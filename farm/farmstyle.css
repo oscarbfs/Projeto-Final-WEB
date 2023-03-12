@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #4CAF50;
+    padding: 20px;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-cadastrar {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+main {
+    margin: 20px;
+    /* display: flex; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.fazenda {
+    background-color: #EEE;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    /* width: 300px; */
+    height: 150px;
+}
+
+.fazenda img {
+    width: 150px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.fazenda-info {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.fazenda-info h2 {
+    margin-top: 0;
+}
+
+.fazenda-info p {
+    margin-bottom: 0;
+}
+
+.selecionar {
+    background-color: #4CAF50;
+    color: #FFF;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.selecionado {
+    background-color: #2196F3;
+    color: #FFF;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
