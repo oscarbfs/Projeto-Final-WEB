@@ -45,6 +45,7 @@ main {
 
 h2 {
     margin-top: 40px;
+    color: #004e0a;
 }
 
 ul {
@@ -58,7 +59,7 @@ li {
 }
 
 a {
-    color: #3d3d3d;
+    color: #004e0a;
     text-decoration: none;
 }
 

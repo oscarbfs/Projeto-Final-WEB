@@ -1,11 +1,6 @@
 <?php
-$servername = "localhost:3306";
-$username = "root";
-$password = "";
+include("mysqli/connection.php");
 $DBName = "farmnote";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
 
 // Check connection
 // if ($conn->connect_error) {
@@ -30,12 +25,10 @@ $sql = "CREATE TABLE IF NOT EXISTS bull (
 bullId INT PRIMARY KEY AUTO_INCREMENT,
 bullPastureId INT,
 bullFarmId INT,
-bullName TEXT,
-bullDescription TEXT,
-bullUpdateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-ON UPDATE CURRENT_TIMESTAMP,
-bullCadastreDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-ON UPDATE CURRENT_TIMESTAMP,
+bullName VARCHAR(100),
+bullDescription VARCHAR(300),
+bullUpdateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+bullCadastreDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 bullWeightKg DOUBLE,
 bullWeightArroba DOUBLE,
 bullGrowthRate DOUBLE
@@ -45,10 +38,10 @@ mysqli_query($conn, $sql);
 $sql = "CREATE TABLE IF NOT EXISTS pasture (
 pastureId INT PRIMARY KEY AUTO_INCREMENT,
 pastureFarmId INT,
-pastureName TEXT,
-pastureDescription TEXT,
+pastureName VARCHAR(100),
+pastureDescription VARCHAR(300),
 pastureStatus ENUM('livre','ocupado','recuperacao'),
-bullUpdateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+pastureUpdateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 ON UPDATE CURRENT_TIMESTAMP,
 pastureCadastreDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 ON UPDATE CURRENT_TIMESTAMP
@@ -57,8 +50,8 @@ mysqli_query($conn, $sql);
 
 $sql = "CREATE TABLE IF NOT EXISTS farm (
 farmId INT PRIMARY KEY AUTO_INCREMENT,
-farmName TEXT,
-farmDescription TEXT,
+farmName VARCHAR(100),
+farmDescription VARCHAR(300),
 farmCadastreDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 ON UPDATE CURRENT_TIMESTAMP,
 farmUpdateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
@@ -66,11 +59,11 @@ ON UPDATE CURRENT_TIMESTAMP
 )";
 mysqli_query($conn, $sql);
 
-$sql = "CREATE TABLE IF NOT EXISTS farm (
+$sql = "CREATE TABLE IF NOT EXISTS imagem (
 imageId INT PRIMARY KEY AUTO_INCREMENT,
 imageObjectId INT,
 imageObjectOfImage ENUM('bull','pasture','farm'),
-imagePath TEXT
+imagePath VARCHAR(1000)
 )";
 mysqli_query($conn, $sql);
 

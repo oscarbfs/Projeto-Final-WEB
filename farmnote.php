@@ -1,6 +1,5 @@
 <?php
-$pagename = "bull";
-
+include("mysqli/connection.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +13,9 @@ $pagename = "bull";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
         $(function () {
-            $("#bull").show();
             $("#pasture").hide();
             $("#farm").hide();
+            $("#bull").show();
         });
     </script>
     <title>FarmNote</title>
@@ -26,9 +25,11 @@ $pagename = "bull";
 
     <div id="farmnote">
 
-        <div id="bull"></div>
-        <div id="pasture"></div>
-        <div id="farm"></div>
+        <div class="main">
+            <div id="bull"></div>
+            <div id="pasture"></div>
+            <div id="farm"></div>
+        </div>
 
         <!-- bottomNavBar -->
         <div class="bottomNavBar" id="bottomNavBar">
@@ -64,8 +65,8 @@ $pagename = "bull";
     });
 
     $(function () {
-        $("#bull").load('bull/bull.php');
-        $("#pasture").load('pasture/pasture.php');
-        $("#farm").load('farm/farm.php');
+        $("#bull").load('bull/tab/bull.php');
+        $("#pasture").load('pasture/tab/pasture.php');
+        $("#farm").load('farm/tab/farm.php');
     });
 </script>

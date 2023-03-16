@@ -1,5 +1,5 @@
 <?php
-include("mysqli/mysqli.php");
+include("mysqli/db.php");
 ?>
 
 </html>
