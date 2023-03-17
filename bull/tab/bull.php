@@ -75,7 +75,7 @@
         "<div class='bull-grid-item'>
         <img src='$image' alt='Imagem do boi'>
         <div class='bull-card_header'> 
-          <h2>$name</h2>
+          <h2><a href='bull/pages/bull_details.php?$id'>$name</a></h2>
           <h5>$farmName</h5>
         </div>
         <p>Pasto: $pastureName</p>
