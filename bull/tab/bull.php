@@ -11,7 +11,7 @@
 
 <body>
   <?php
-  include("../../mysqli/connection.php");
+  include("../bullServices/sql.php");
 
   //select database
   $db = mysqli_select_db($conn, $DBName);
@@ -22,6 +22,12 @@
   
     $result = mysqli_query($conn, $bullsData);
     $bulls = [];
+    
+    $header =
+      "<header>
+        <h1>Bois</h1>
+        <a href='bull/pages/bull_create.php' class='bull-btn-cadastrar'>Cadastrar Boi</a>
+      </header>";
 
     if (mysqli_num_rows($result) > 0) {
 
@@ -44,56 +50,56 @@
         ];
       }
 
+      $bullGrid = "";
+  
+      foreach ($bulls as $key => $value) {
+        $id = $value["id"];
+        $pastureId = $value["pastureId"];
+        $farmId = $value["farmId"];
+        $name = $value["name"];
+        $description = $value["description"];
+        $updateDate = $value["updateDate"];
+        $cadastreDate = $value["cadastreDate"];
+        $weightKg = $value["weightKg"];
+        $weightArroba = $value["weightArroba"];
+        $growthRate = $value["growthRate"];
+        $image = $value["image"];
+        $pastureName = $value["pastureName"];
+        $farmName = $value["farmName"];
+  
+        $bullGrid .=
+          "<div class='bull-grid-item'>
+          <img src='$image' alt='Imagem do boi'>
+          <div class='bull-card_header'> 
+            <h2><a href='bull/pages/bull_details.php?$id'>$name</a></h2>
+            <h5>$farmName</h5>
+          </div>
+          <p>Pasto: $pastureName</p>
+          <p>Peso(Kg): $weightKg Kg</p>
+          <p>Peso(@): $weightArroba @</p>
+          <p>Taxa de Crescimento: $growthRate%</p>
+          <p>Descrição: $description</p>
+        </div>";
+      }
+      $main = "<main> <div class='bull-grid-container'>" . $bullGrid . "</div> </main>";
+  
+      $bullPage = $header . $main;
+    } else {
+      $bullPage = "
+      <div class=bull-withoutBull>  
+        <h2> Nenhum boi encontrado! </h2>
+        <a href='bull/pages/bull_create.php' class='bull-btn-cadastrar'>Cadastrar Boi</a>
+      </div>";
     }
 
     mysqli_close($conn);
 
-    $header =
-      "<header>
-        <h1>Bois</h1>
-        <a href='bull/pages/bull_create.php' class='bull-btn-cadastrar'>Cadastrar Boi</a>
-      </header>";
-
-    $bullGrid = "";
-
-    foreach ($bulls as $key => $value) {
-      $id = $value["id"];
-      $pastureId = $value["pastureId"];
-      $farmId = $value["farmId"];
-      $name = $value["name"];
-      $description = $value["description"];
-      $updateDate = $value["updateDate"];
-      $cadastreDate = $value["cadastreDate"];
-      $weightKg = $value["weightKg"];
-      $weightArroba = $value["weightArroba"];
-      $growthRate = $value["growthRate"];
-      $image = $value["image"];
-      $pastureName = $value["pastureName"];
-      $farmName = $value["farmName"];
-
-      $bullGrid .=
-        "<div class='bull-grid-item'>
-        <img src='$image' alt='Imagem do boi'>
-        <div class='bull-card_header'> 
-          <h2><a href='bull/pages/bull_details.php?$id'>$name</a></h2>
-          <h5>$farmName</h5>
-        </div>
-        <p>Pasto: $pastureName</p>
-        <p>Peso(Kg): $weightKg Kg</p>
-        <p>Peso(@): $weightArroba @</p>
-        <p>Taxa de Crescimento: $growthRate%</p>
-        <p>Descrição: $description</p>
-      </div>";
-    }
-    $main = "<main> <div class='bull-grid-container'>" . $bullGrid . "</div> </main>";
-
-    $bullPage = $header . $main;
 
     echo
       "<div id='bull'>" . $bullPage . "</div>";
   } else {
     echo "
-      <div class=nbull-oCurrentFarm>  
+      <div class=bull-noCurrentFarm>  
         <h2> Você ainda não escolheu um fazenda! </h2>
         <h4>Se não você ainda não cadastrou nenhuma fazenda clique na opção 'Fazenda' na parte inferior da tela e depois clique em 'Cadastar Fazenda'.</h4>
         <h4>Caso já tenha fazenda(s) cadastrada(s) clique na opção 'Fazenda' na parte inferior da tela e depois escolha a fazenda que deseja conferir.</h4>

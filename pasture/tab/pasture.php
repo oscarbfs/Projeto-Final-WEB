@@ -11,7 +11,7 @@
 
 <body>
   <?php
-  include("../../mysqli/connection.php");
+  include("../pastureServices/sql.php");
 
   //select database
   $db = mysqli_select_db($conn, $DBName);
@@ -67,7 +67,7 @@
         "<div class='pasture-grid-item'>
         <img src='$image' alt='Imagem do boi'>
         <div class='pasture-card_header'> 
-          <h2>$name</h2>
+          <h2><a href='pasture/pages/pasture_details.php?$id'>$name</a></h2>
           <h5>$farmName</h5>
         </div>
         <p>Status: $status</p>

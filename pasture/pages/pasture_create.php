@@ -86,7 +86,7 @@ include("../../mysqli/connection.php");
 		exit();
 	}
 	?>
-	<h1>Cadastro de Bois</h1>
+	<h1>Cadastro de Pasto</h1>
 	<form method="post">
 		<label for="nome">Nome:</label>
 		<input type="text" id="nome" name="pastureName" required><br>

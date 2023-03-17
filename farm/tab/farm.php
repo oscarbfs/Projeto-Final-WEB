@@ -11,16 +11,13 @@
 
 <body>
   <?php
-  include("../../mysqli/connection.php");
+  include("../farmServices/sql.php");
   // $_SESSION['currentFarmId'] = $_GET['farmId'];
 
   //select database
   $db = mysqli_select_db($conn, $DBName);
 
-  // sql to insert data
-  $sql = "SELECT * FROM farm";
-
-  $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($conn, $farmsData);
   $farms = [];
 
   if (mysqli_num_rows($result) > 0) {
@@ -33,6 +30,7 @@
         "description" => $row['farmDescription'],
         "updateDate" => $row['farmUpdateDate'],
         "cadastreDate" => $row['farmCadastreDate'],
+        "image" => $row['imagePath'],
       ];
     }
 
@@ -55,23 +53,24 @@
     $description = $value["description"];
     $updateDate = $value["updateDate"];
     $cadastreDate = $value["cadastreDate"];
+    $image = $value["image"];
     
     $textButton = 'Selecionar Fazenda';
     $selecionadoOuNao = 'selecionar';
 
     if ($currentFarmId == $id) {
-      $selecionadoOuNao = 'selecionado';
+      $selecionadoOuNao = 'selecionada';
       $textButton = 'Fazenda Selecionada';
     }
     
     $farmList .=
     "<div class='farm-fazenda'>
-        <img src='https://img.freepik.com/fotos-gratis/cenario-de-produtos-naturais-fazenda-e-luz-solar_53876-143219.jpg' alt='Imagem da Fazenda'>
+        <img src='$image' alt='Imagem da Fazenda'>
         <div class='farm-fazenda-info'>
-            <h2>$name</h2>
+            <h2><a href='farm/pages/farm_details.php?$id'>$name</a></h2>
             <p>$description</p>
         </div>
-        <button id='select-fazenda-$id' class='farm-selecionar'>Selecionar Fazenda</button>
+        <button class='farm-$selecionadoOuNao'>$textButton</button>
     </div>";
   }
 
@@ -83,29 +82,3 @@
 </body>
 
 </html>
-
-<script>
-    // Adiciona um evento de clique para cada botão de mudança de fazenda
-    var btnMudarFazenda = document.querySelectorAll('.selecionar');
-    for (var i = 0; i < btnMudarFazenda.length; i++) {
-        btnMudarFazenda[i].addEventListener('click', function () {
-
-            // Marca o botão clicado como selecionado
-            this.classList.add('selecionado');
-
-            // Desmarca todos os outros botões como não selecionados
-            for (var j = 0; j < btnMudarFazenda.length; j++) {
-                if (btnMudarFazenda[j] !== this) {
-                    btnMudarFazenda[j].classList.remove('selecionado');
-                }
-            }
-
-            // Envia uma requisição AJAX para atualizar a fazenda selecionada no PHP
-            var fazendaId = this.id.replace('select-fazenda-', '');
-            var xhttp = new XMLHttpRequest();
-            xhttp.open('GET', 'atualizar_fazenda.php?fazenda_id=' + fazendaId, true);
-            xhttp.send();
-        });
-    }
-
-</script>

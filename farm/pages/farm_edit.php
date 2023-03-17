@@ -11,44 +11,62 @@ include("../farmServices/sql.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../styles/farmcreatestyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <title>Cadastro das Fazendas</title>
+    <title>Cadastro dos Bois</title>
 </head>
 
 <body>
     <?php
+    $db = mysqli_select_db($conn, $DBName);
+
+    $id = $_SERVER['QUERY_STRING'];
+
+    $result = mysqli_query($conn, farmWithId($id));
+    $farm = [];
+    // output data of each row
+    while ($row = mysqli_fetch_assoc($result)) {
+        $farm = [
+            "id" => $row['farmId'],
+            "name" => $row['farmName'],
+            "description" => $row['farmDescription'],
+            "updateDate" => $row['farmUpdateDate'],
+            "cadastreDate" => $row['farmCadastreDate'],
+            "image" => $row['imagePath'],
+            "imageId" => $row['imageId']
+        ];
+    }
+
+    $id = $farm['id'];
+    $name = $farm['name'];
+    $description = $farm['description'];
+    $updateDate = $farm['updateDate'];
+    $cadastreDate = $farm['cadastreDate'];
+    $image = $farm['image'];
+    $imageId = $farm['imageId'];
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $now = date("Y-m-d H:i:s");
 
         $farmName = $_POST['farmName'];
         $farmDescription = $_POST['farmDescription'];
         $farmUpdateDate = $now;
-        $farmCadastreDate = $now;
+        $farmCadastreDate = $cadastreDate;
         $imagePath = $_POST['imagePath'];
 
         $db = mysqli_select_db($conn, $DBName);
 
         // sql to insert data
-        $sql = "INSERT INTO farm (
-			farmId,
-            farmName,
-            farmDescription,
-            farmUpdateDate,
-            farmCadastreDate
-		)
-		VALUES (
-			NULL,
-			'$farmName',
-			'$farmDescription',
-			'$farmUpdateDate',
-			'$farmCadastreDate'
-		)
+        $sql = "UPDATE farm SET
+			farmName = '$farmName',
+			farmDescription = '$farmDescription',
+			farmUpdateDate = '$farmUpdateDate',
+			farmCadastreDate = '$farmCadastreDate'
+		WHERE
+            farmId = $id
 		";
-
-        echo $sql;
 
         mysqli_query($conn, $sql);
 
-        $result = mysqli_query($conn, $lastFarmId);
+        $result = mysqli_query($conn, $lastBullId);
         $farmId;
 
         if (mysqli_num_rows($result) > 0) {
@@ -60,18 +78,12 @@ include("../farmServices/sql.php");
 
         }
 
-        $sql = "INSERT INTO imagem (
-			imageId,
-			imageObjectId,
-			imageObjectOfImage,
-			imagePath
-		)
-		VALUES (
-			NULL,
-			'$farmId',
-			'farm',
-			'$imagePath'
-		)
+        $sql = "UPDATE imagem SET
+			imageObjectId = '$id',
+			imageObjectOfImage = 'farm',
+			imagePath = '$imagePath'
+		WHERE 
+            imageId = $imageId
 		";
 
         mysqli_query($conn, $sql);
@@ -82,7 +94,7 @@ include("../farmServices/sql.php");
         exit();
     }
     ?>
-    <h1>Cadastro das Fazendas</h1>
+    <h1>Editar Fazenda</h1>
     <form method="post">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="farmName" required><br>

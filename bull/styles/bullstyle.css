@@ -69,6 +69,17 @@ main {
     text-decoration: none;
 }
 
+.bull-withoutBull{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+}
+.bull-withoutBull h4 {
+    color: #008d00;
+    text-decoration: none;
+}
+
 footer {
     background-color: #333;
     color: #fff;
