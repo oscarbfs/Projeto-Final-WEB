@@ -35,6 +35,13 @@ INNER JOIN farm on (farm.farmId = bull.bullFarmId)
 WHERE bullId=$id";
 }
 
+function deleteBullWithId($id) {
+  return "DELETE 
+  FROM 
+  bull
+  WHERE bullId=$id";
+}
+
 $bullsData = "
 SELECT 
 bullId,
