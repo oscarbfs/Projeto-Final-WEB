@@ -5,7 +5,7 @@ $servername = "localhost:3306";
 $username = "root";
 $password = "";
 $DBName = "farmnote";
-$currentFarmId = $_SESSION['currentFarmId'] ?? 1;
+$currentFarmId = $_SESSION['currentFarmId'] ?? 2;
 // $currentFarmId = $_COOKIE['currentFarmId'] ?? 1;
 $currentFarmNoteTab = 'bull';
 
