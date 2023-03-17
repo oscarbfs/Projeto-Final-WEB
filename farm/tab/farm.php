@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="farm/farmstyle.css">
+  <link rel="stylesheet" type="text/css" href="farm/styles/farmstyle.css">
   <title>Fazendas</title>
 </head>
 
@@ -44,7 +44,7 @@
   $header =
     "<header>
         <h1>Fazendas</h1>
-        <a href='farm/pages/farm_create.php' class='btn-cadastrar'>Cadastrar Fazenda</a>
+        <a href='farm/pages/farm_create.php' class='farm-btn-cadastrar'>Cadastrar Fazenda</a>
     </header>";
 
   $farmList = "";
@@ -64,16 +64,14 @@
       $textButton = 'Fazenda Selecionada';
     }
     
-    
-
     $farmList .=
-    "<div class='fazenda'>
+    "<div class='farm-fazenda'>
         <img src='https://img.freepik.com/fotos-gratis/cenario-de-produtos-naturais-fazenda-e-luz-solar_53876-143219.jpg' alt='Imagem da Fazenda'>
-        <div class='fazenda-info'>
+        <div class='farm-fazenda-info'>
             <h2>$name</h2>
             <p>$description</p>
         </div>
-        <button id='select-fazenda-$id' class='selecionar'>Selecionar Fazenda</button>
+        <button id='select-fazenda-$id' class='farm-selecionar'>Selecionar Fazenda</button>
     </div>";
   }
 

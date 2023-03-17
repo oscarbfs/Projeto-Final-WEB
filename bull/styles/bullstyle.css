@@ -10,7 +10,7 @@ header h1{
     color: #fff;
 }
 
-.btn-cadastrar {
+.bull-btn-cadastrar {
     background-color: #4CAF50;
     color: #fff;
     padding: 10px 20px;
@@ -23,48 +23,48 @@ main {
     margin: 20px;
 }
 
-.grid-container {
+.bull-grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
-.grid-item {
+.bull-grid-item {
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
     background-color: #fff;
-    height: 500px;
+    height: 480px;
 }
 
-.grid-item img {
+.bull-grid-item img {
     width: 100%;
     height: 50%;
     object-fit: cover;
     object-position: center;
 }
 
-.card_header {
+.bull-card_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.card_header h2 {
+.bull-card_header h2 {
     margin-top: 20px;
 }
-.card_header h5 {
+.bull-card_header h5 {
     color: #007c06;
 }
 
-.noCurrentFarm{
+.bull-noCurrentFarm{
     width: 100%;
     text-align: center;
     position: absolute;
     top: 40%;
 }
 
-.noCurrentFarm h4 {
+.bull-noCurrentFarm h4 {
     color: #008d00;
     text-decoration: none;
 }

@@ -47,7 +47,7 @@
     $header =
       "<header>
         <h1>Pastos</h1>
-        <a href='pasture/pages/pasture_create.php' class='btn-cadastrar'>Cadastrar Pastos</a>
+        <a href='pasture/pages/pasture_create.php' class='pasture-btn-cadastrar'>Cadastrar Pastos</a>
       </header>";
 
     $pastureGrid = "";
@@ -64,9 +64,9 @@
       $farmName = $value['farmName'];
 
       $pastureGrid .=
-        "<div class='grid-item'>
+        "<div class='pasture-grid-item'>
         <img src='$image' alt='Imagem do boi'>
-        <div class='card_header'> 
+        <div class='pasture-card_header'> 
           <h2>$name</h2>
           <h5>$farmName</h5>
         </div>
@@ -74,7 +74,7 @@
         <p>Descrição: $description</p>
       </div>";
     }
-    $main = "<main> <div class='grid-container'>" . $pastureGrid . "</div> </main>";
+    $main = "<main> <div class='pasture-grid-container'>" . $pastureGrid . "</div> </main>";
 
     $pasturePage = $header . $main;
 

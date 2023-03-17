@@ -51,7 +51,7 @@
     $header =
       "<header>
         <h1>Bois</h1>
-        <a href='bull/pages/bull_create.php' class='btn-cadastrar'>Cadastrar Boi</a>
+        <a href='bull/pages/bull_create.php' class='bull-btn-cadastrar'>Cadastrar Boi</a>
       </header>";
 
     $bullGrid = "";
@@ -72,9 +72,9 @@
       $farmName = $value["farmName"];
 
       $bullGrid .=
-        "<div class='grid-item'>
+        "<div class='bull-grid-item'>
         <img src='$image' alt='Imagem do boi'>
-        <div class='card_header'> 
+        <div class='bull-card_header'> 
           <h2>$name</h2>
           <h5>$farmName</h5>
         </div>
@@ -85,7 +85,7 @@
         <p>Descrição: $description</p>
       </div>";
     }
-    $main = "<main> <div class='grid-container'>" . $bullGrid . "</div> </main>";
+    $main = "<main> <div class='bull-grid-container'>" . $bullGrid . "</div> </main>";
 
     $bullPage = $header . $main;
 
@@ -93,7 +93,7 @@
       "<div id='bull'>" . $bullPage . "</div>";
   } else {
     echo "
-      <div class=noCurrentFarm>  
+      <div class=nbull-oCurrentFarm>  
         <h2> Você ainda não escolheu um fazenda! </h2>
         <h4>Se não você ainda não cadastrou nenhuma fazenda clique na opção 'Fazenda' na parte inferior da tela e depois clique em 'Cadastar Fazenda'.</h4>
         <h4>Caso já tenha fazenda(s) cadastrada(s) clique na opção 'Fazenda' na parte inferior da tela e depois escolha a fazenda que deseja conferir.</h4>
